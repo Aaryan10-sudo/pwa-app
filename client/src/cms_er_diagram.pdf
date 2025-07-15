@@ -1,0 +1,51 @@
+// CMS ER Diagram
+digraph {
+	users [label="users
+---------
+id (PK)
+name
+email (unique)
+password
+role
+created_at
+"]
+	pages [label="pages
+---------
+id (PK)
+slug (unique)
+title
+description
+created_by (FK users.id)
+created_at
+updated_at
+"]
+	blocks [label="blocks
+---------
+id (PK)
+title
+content
+label
+category
+position
+page_id (FK pages.id)
+created_at
+updated_at
+"]
+	media [label="media
+---------
+id (PK)
+url
+alt_text
+uploaded_by (FK users.id)
+created_at
+"]
+	settings [label="settings
+---------
+id (PK)
+key (unique)
+value
+"]
+	pages -> users [label=created_by]
+	blocks -> pages [label=page_id]
+	media -> users [label=uploaded_by]
+}
